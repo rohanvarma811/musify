@@ -17,6 +17,9 @@ const cookieParser = require('cookie-parser');
  * Custom Modules
  */
 const login = require('./src/routes/login.route');
+const auth = require('./src/routes/auth.route');
+const authenticatedUser = require('./src/middlewares/auth_user.middleware');
+const home = require('./src/routes/home.route');
 
 
 // Initial express app
@@ -46,6 +49,24 @@ app.use(cors()).use(cookieParser());
  * Login Page
  */
 app.use('/login', login);
+
+
+/**
+ * Auth Page
+ */
+app.use('/auth', auth);
+
+
+/**
+ * Checking user is authenticated
+ */
+app.use(authenticatedUser);
+
+
+/**
+ * Home page
+ */
+app.use('/', home);
 
 
 app.listen(5000, () => {
