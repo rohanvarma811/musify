@@ -7,8 +7,13 @@
 
 
 const login = (req, res) => {
-    res.render('./pages/login.ejs');
-};
+    const { access_token, refresh_token } = req.cookies;
+    if (access_token && refresh_token) {
+        return res.redirect('/');
+    } else {
+        res.render('./pages/login.ejs');
+    }
+}
 
 
 module.exports = { login };
