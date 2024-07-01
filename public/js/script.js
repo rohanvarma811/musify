@@ -9,7 +9,7 @@
 /**
  * custom module
  */
-import { addEventOnElems } from "./utils.js";
+import { addEventOnElems } from "./utils";
 
 
 /**

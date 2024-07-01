@@ -11,7 +11,7 @@
         <!-- 
             - #TOP APP BAR
         -->
-        <%- include('../partials/top_bar', { locals: currentProfile }) %>
+        <%- include('../partials/top_bar',  locals.currentProfile ) %>
 
         <!-- 
             - #BOTTOM NAV
@@ -23,10 +23,15 @@
             <!-- 
                 - #RECOMMENDED ALBUM
             -->
-                <h2>Hello There!</h2>
+            <% if (recommendedAlbums && recommendedAlbums.length > 0) { %>
+                <section class="section recommended-albums">
+                    <div class="title-wrapper">
+                        <h2 class="section-title">Recommended Albums</h2>
+                    </div>
+                    
+                </section>
+            <% } %>
         </div>
-        
-
     </article>
 
 </body>
