@@ -26,14 +26,6 @@ const { getData } = require('../config/axios.config');
  * @returns {Object}
  */
 
-// GENERATED CODE BY YOU
-// const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
-//     const { data: recommendedTracks } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
-//     return recommendedTracks.tracks; // Adjust this line according to actual response structure
-// };
-
-
-
 // ORIGINAL CODE
 const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
     const { data: { tracks : recommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
@@ -41,5 +33,10 @@ const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
     return recommendedTracks;
 }
 
+// GENERATED CODE BY YOU
+// const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
+//     const { data: recommendedTracks } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
+//     return recommendedTracks.tracks; // Adjust this line according to actual response structure
+// };
 
 module.exports = { getRecommendedTrack };
