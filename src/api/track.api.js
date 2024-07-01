@@ -25,8 +25,18 @@ const { getData } = require('../config/axios.config');
  * @param {number} itemLimit - the maximum number of items to returns. default: 30
  * @returns {Object}
  */
+
+// GENERATED CODE BY YOU
+// const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
+//     const { data: recommendedTracks } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
+//     return recommendedTracks.tracks; // Adjust this line according to actual response structure
+// };
+
+
+
+// ORIGINAL CODE
 const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
-    const { data: { track: recommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
+    const { data: { tracks : recommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
 
     return recommendedTracks;
 }

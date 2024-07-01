@@ -1,6 +1,6 @@
 <% 
     const {
-        url = `/images/default-album-banner.png`,
+        url = `/images/${locals.type}-banner.png`,
         width = 300,
         height = 300
     } = locals.image ?? {};
@@ -11,5 +11,12 @@
         <figure class="img-holder">
             <img src="<%=url%>" width="<%=width%>" height="<%=height%>" alt="<%=locals.title%>" class="img-cover" data-image-load-anim>
         </figure>
+
+
+        <%- include('./play_btn', {
+            variant : 'filled',
+            dataAttr: `data-uri="${locals.uri}"`
+        }) %>
+
     </div>
 </div>
