@@ -26,9 +26,7 @@ const { copyFileSync, access } = require('fs');
 const token = axios.create({
     baseURL: apiConfig.TOKEN_BASE_URL,
     headers: {
-        'Authorization': `Basic ${(Buffer.from(apiConfig.CLIENT_ID + 
-            ':' + apiConfig.CLIENT_SECRET).toString('base64'))}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
+        'Authorization': `Basic ${(Buffer.from(apiConfig.CLIENT_ID + ':' + apiConfig.CLIENT_SECRET).toString('base64'))}`, 'Content-Type': 'application/x-www-form-urlencoded'
     }
 });
 

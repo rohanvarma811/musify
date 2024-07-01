@@ -20,15 +20,15 @@ const { getData } = require('../config/axios.config');
  * provided seeds, a list of tracks will be returned together with
  * pool size details
  * 
- * @param {*} req - server request object
- * @param {*} trackSeed - object of artist or track seeds string
- * @param {*} itemLimit - the maximum number of items to returns. default: 30
+ * @param {Object} req - server request object
+ * @param {Object} seeds - object of artist or track seeds string
+ * @param {number} itemLimit - the maximum number of items to returns. default: 30
  * @returns {Object}
  */
 const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
-    const { data: { track: getRecommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
+    const { data: { track: recommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
 
-    return getRecommendedTracks;
+    return recommendedTracks;
 }
 
 

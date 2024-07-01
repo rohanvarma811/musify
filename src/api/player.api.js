@@ -13,9 +13,10 @@ const apiConfig = require('../config/api.config');
 
 
 /**
+ * Get tracks from the current user's recently played tracks
  * 
  * @param {Object} req - server request object 
- * @param {*} itemLimit - the maximum number of items to return default: 30
+ * @param {number} itemLimit - the maximum number of items to return. default: 30
  * @returns {Object}
  */
 const getRecentlyPlayed = async (req, itemLimit = apiConfig.DEFAULT_LIMIT) => {
@@ -25,4 +26,4 @@ const getRecentlyPlayed = async (req, itemLimit = apiConfig.DEFAULT_LIMIT) => {
 }
 
 
-module.exports = { getRecentlyPlayed };
+module.exports = { getRecentlyPlayed }
