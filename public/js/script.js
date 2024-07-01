@@ -9,7 +9,7 @@
 /**
  * custom module
  */
-import { addEventOnElems } from "./utils";
+import { addEventOnElems } from "./utils.js";
 
 
 /**
@@ -99,3 +99,46 @@ const ripple = function ($rippleElem) {
 
 const /** {HTMLElement} */ $rippleElems = document.querySelector('[data-ripple]');
 $rippleElems?.forEach(item => ripple(item));
+
+
+
+/**
+ * Image animation on loading
+ */
+
+window.addEventListener('DOMContentLoaded', function() {
+    const /** {Array<HTMLElement>} */ $animatedImages = document.querySelectorAll('[data-image-load-anim]');
+
+    const addAnimation = function () {
+        this.animate({
+            opacity: 1
+        }, { duration: 200, fill: 'forwards'});
+    }
+
+    $animatedImages.forEach($image => {
+        $image.style.opacity = 0;
+
+        if($image.complete) {
+            addAnimation.call($image);
+        } else {
+            $image.addEventListener('load', addAnimation);
+        }
+    })
+});
+
+
+/**
+ * Bottom nav item active
+ */
+
+const /** {Array<HTMLElement>} */ $bottomNavItems = document.querySelectorAll('[data-bottom-nav-item]');
+const /** {Array<HTMLElement>} */ $activeBottomNavItem = document.querySelectorAll('[data-bottom-nav-item].active');
+
+const activeNavItem = function() {
+    $activeBottomNavItem?.classList.remove('active');
+    this.classList.add('active');
+}
+
+$bottomNavItems && addEventOnElems($bottomNavItems, 'click', activeNavItem);
+
+

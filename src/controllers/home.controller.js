@@ -44,7 +44,7 @@
 
 
 // --- REFERENCE CODE ---
-'use strict';
+// 'use strict';
 
 /**
  * custom modules
