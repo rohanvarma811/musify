@@ -9,10 +9,10 @@
 /**
  * custom modules
  */
-const apiConfig = require('../config/api.config');
-const userApi = require('../api/user.api');
-const playerApi = require('../api/player.api');
-const trackApi = require('../api/track.api');
+// const apiConfig = require('../config/api.config');
+// const userApi = require('../api/user.api');
+// const playerApi = require('../api/player.api');
+// const trackApi = require('../api/track.api');
 
 // --- ORIGINAL CODE ---
 // const home = async (req, res) => {
@@ -44,23 +44,34 @@ const trackApi = require('../api/track.api');
 
 
 // --- REFERENCE CODE ---
+'use strict';
+
+/**
+ * custom modules
+ */
+
+const userApi = require('../api/user.api');
+const playerApi = require('../api/player.api');
+const trackApi = require('../api/track.api');
+const apiConfig = require('../config/api.config');
+
 const home = async (req, res) => {
     try {
         const currentProfile = await userApi.getProfile(req);
-        console.log('Current Profile:', currentProfile);
+        // console.log('Current Profile:', currentProfile);
 
         const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
-        console.log('Recently Played:', recentlyPlayed);
+        // console.log('Recently Played:', recentlyPlayed);
 
         const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track);
-        console.log('Recently Played Tracks:', recentlyPlayedTracks);
+        // console.log('Recently Played Tracks:', recentlyPlayedTracks);
 
         const trackIds = recentlyPlayedTracks.map(({ id }) => id);
         const trackSeed = trackIds.slice(0, 5).join(',');
-        console.log('Track Seed:', trackSeed);
+        // console.log('Track Seed:', trackSeed);
 
         const recommendedAlbums = await trackApi.getRecommendedTrack(req, trackSeed, apiConfig.LOW_LIMIT);
-        console.log('Recommended Albums:', recommendedAlbums);
+        // console.log('Recommended Albums:', recommendedAlbums);
 
         res.render('./pages/home', {
             currentProfile,
@@ -72,6 +83,5 @@ const home = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
-
 
 module.exports = { home };
