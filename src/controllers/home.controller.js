@@ -54,6 +54,7 @@ const userApi = require('../api/user.api');
 const playerApi = require('../api/player.api');
 const trackApi = require('../api/track.api');
 const apiConfig = require('../config/api.config');
+const artisApi = require('../api/artist.api');
 
 const home = async (req, res) => {
     try {
@@ -73,10 +74,18 @@ const home = async (req, res) => {
         const recommendedAlbums = await trackApi.getRecommendedTrack(req, trackSeed, apiConfig.LOW_LIMIT);
         // console.log('Recommended Albums:', recommendedAlbums);
 
+
+        // recommended artists
+        const artistIdEntries = recommendedAlbums.map(track => track.artists.map(artist => artist.id));
+        const uniqueArtistIds = [...new Set(artistIdEntries.flat(1))].join(',');
+        const recommendedArtists = await artisApi.getSeveralDetail(req, uniqueArtistIds);
+
+
         res.render('./pages/home', {
             currentProfile,
-            recentlyPlayedTracks,
-            recommendedAlbums
+            // recentlyPlayedTracks,
+            recommendedAlbums,
+            recommendedArtists  
         });
     } catch (error) {
         console.error('Error in home controller:', error);

@@ -1,3 +1,12 @@
+<% 
+    const {
+        artists: recommendedArtistsItems
+    } = locals.recommendedArtists;
+
+%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +38,7 @@
                         <h2 class="title-large section-title">Recommend for you</h2>
                     </div>
 
-                    <div class="slider" data-slider>
+                    <div class="slider">
                         <div class="slider-inner">
                             
                             <% locals.recommendedAlbums.forEach(({ album: { artists, images, name: title, id, uri } }) => { %>
@@ -54,6 +63,42 @@
                     </div>
                     
                 </section>
+            <% } %>
+
+            
+            <!-- 
+                - #RECOMMENDED ARTISTS
+            -->
+            <% if(recommendedArtistsItems.length) { %>
+                <section class="section">
+                    <div class="title-wrapper">
+                        <h2 class="title-large section-title">Artist for you</h2>
+                    </div>
+
+                    <div class="slider">
+                        <div class="slider-inner">
+                            
+                            <% recommendedArtistsItems.forEach(({ name: title, type, images, id, uri }) => { %>
+
+                                <% const [image] = images || [] %>
+
+                                <%- include('../partials/card', {
+                                    variant: 'artist-card',
+                                    title,
+                                    image,
+                                    type,
+                                    text: type,
+                                    link: `/artist/${id}`,
+                                    uri
+                                }) %>
+
+                            <% }) %>
+                            
+                        </div>
+                    </div>
+                    
+                </section>
+            
             <% } %>
 
         </div>
