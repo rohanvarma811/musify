@@ -29,7 +29,23 @@ const generateRandomString = function (length) {
 }
 
 
+/**
+ * Constructs a URL query object based on provided parameters
+ * 
+ * @param {Object} params - The parameters for constructing the URL query.
+ * @param {number} [params.page=1] - The page number for paginated results.
+ * @param {number} [limit=apiConfig.DEFAULT_LIMIT] - The limit of items per page, with a default value from the API configuration.
+ * @returns {Object} - The URL query object with properties for limit, offset, and page.
+ */
+const getUrlQuery = (params, limit = apiConfig.DEFAULT_LIMIT) => {
+    const { page = 1 } = params;
+    const /** {numbers} */ offset = (limit * page) - limit;
+
+    return { limit, offset, page};
+}
+
 
 module.exports = {
-    generateRandomString
+    generateRandomString,
+    getUrlQuery
 }
