@@ -29,6 +29,26 @@ const getFeatured = async (req, itemLimit) => {
 }
 
 
+/**
+ * Get a list of Spotify Playlists tagged with a partiular category
+ * 
+ * @param {Object} req - server request object
+ * @param {number} itemLimit - the maximum number of times to return. default:30
+ * @returns {Object}
+ */
+const getCategoryPlaylist = async (req, itemLimit) => {
+    const { offset, limit, page } = getUrlQuery(req.params, itemLimit);
+    const { categoryId = 'toplists' } = req.params;
+
+    const { data: catPlaylist } = await getData(`/browse/categories/${categoryId}/playlists?limit=${limit}&offset=${offset}`, req.cookies.access_token);
+
+    const /** {string} */ baseUrl = `${req.baseUrl}/${categoryId}`;
+
+    return { baseUrl, page, ...catPlaylist }
+}
+
+
 module.exports = { 
-    getFeatured
+    getFeatured,
+    getCategoryPlaylist
 }

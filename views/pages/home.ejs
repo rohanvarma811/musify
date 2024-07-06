@@ -18,6 +18,14 @@
             next: featuredPlaylistNext
         }
     } = locals.featuredPlaylist;
+
+    // top playlist
+    const {
+        playlists: { 
+            items: topPlaylistItems,
+            next: topPlaylistNext
+        }
+    } = locals.topPlaylist; 
 %>
 
 
@@ -159,6 +167,7 @@
                 
             </section>
 
+
             <!-- 
                 - #FEATURED PLAYLISTS
             -->
@@ -193,11 +202,50 @@
                                 uri
                             }) %>
 
-                        <% }) %>
-                        
+                        <% }) %>  
                     </div>
                 </div>
-                
+            </section>
+
+            
+            <!-- 
+                - #TOP PLAYLIST
+            -->
+            <section class="section">
+                <div class="title-wrapper">
+                    <h2 class="title-large section-title">
+                        Top playlists
+                    </h2>
+
+                    <% if(topPlaylistNext != null) { %>
+                        <a href="/explore/toplists" class="btn btn-link" data-ripple>
+                            <span class="label-large">See all</span>
+
+                            <div class="state-layer"></div>
+                        </a>
+                    <% } %>
+                </div>
+
+                <div class="slider">
+                    <div class="slider-inner">
+
+                        <% topPlaylistItems.forEach(({ id, images, name: title, description, uri }) => 
+                        { %>
+
+                            <% const [image] = images || [] %>
+
+                            <%- include('../partials/card', {
+                                image,
+                                type: 'playlist',
+                                title,
+                                text: description,
+                                link: `/playlist/${id}`,
+                                uri
+                            }) %>
+
+                        <% }) %>
+                    </div>
+                </div>
             </section>
 
 
