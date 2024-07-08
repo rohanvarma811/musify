@@ -823,7 +823,7 @@
 .player-range-wrapper .player-range { order: -1; }
 
 
-.player-control-btns {
+.player-control-btns {  
   display: flex;
   justify-content: center;
   align-items: center;
