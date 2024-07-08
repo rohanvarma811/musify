@@ -207,7 +207,7 @@
                 </div>
             </section>
 
-            
+
             <!-- 
                 - #TOP PLAYLIST
             -->
@@ -217,13 +217,13 @@
                         Top playlists
                     </h2>
 
-                    <% if(topPlaylistNext != null) { %>
+                    <%# COMMENTED LINE MAYBE USEFUL IN FUTURE %>
+                    <%# if(topPlaylistNext != null) { %>
                         <a href="/explore/toplists" class="btn btn-link" data-ripple>
                             <span class="label-large">See all</span>
-
                             <div class="state-layer"></div>
                         </a>
-                    <% } %>
+                    <%# } %>
                 </div>
 
                 <div class="slider">
@@ -248,10 +248,28 @@
                 </div>
             </section>
 
-
+            
 
 
         </div>
+
+
+        <!-- 
+            - #FOOTER
+        -->
+        <%- include('../layouts/footer') %>
+
+
+        <!-- 
+            - #PLAYER SM
+        -->
+        <%- include('../partials/player_sm') %>
+
+
+        <!-- 
+            - #PLAYER SM
+        -->
+        <%- include('../partials/player_lg') %>
 
 
     </article>
