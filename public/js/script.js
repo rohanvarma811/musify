@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', function() {
  */
 
 const /** {Array<HTMLElement>} */ $bottomNavItems = document.querySelectorAll('[data-bottom-nav-item]');
-const /** {Array<HTMLElement>} */ $activeBottomNavItem = document.querySelectorAll('[data-bottom-nav-item].active');
+const /** {HTMLElement} */ $activeBottomNavItem = document.querySelectorAll('[data-bottom-nav-item].active');
 
 const activeNavItem = function() {
     $activeBottomNavItem?.classList.remove('active');
