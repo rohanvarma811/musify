@@ -26,7 +26,7 @@ const refreshToken = async (req, res) => {
         } = response.data;
 
 
-        res.cookie('access token', access_token, { maxAge: expires_in * MILLISECONDS });
+        res.cookie('access_token', access_token, { maxAge: expires_in * MILLISECONDS });
         res.redirect(req.query.redirect);
 
     } else {
