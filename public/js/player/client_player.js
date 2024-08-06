@@ -9,9 +9,11 @@
  * custom modules
  */
 import { cookies, transferPlayback, play } from "./client_player.api.js";
-import { addEventOnElems } from "../utils.js";
+import { addEventOnElems, msToTimeCode } from "../utils.js";
 
-const /** {Array<HYMLElement>} */ $players = document.querySelectorAll('[data-player]');
+const /** {Array<HTMLElement>} */ $players = document.querySelectorAll('[data-player]');
+const /** {HTMLElement} */ $playerNextBtn = document.querySelector('[data-player-next-btn]');
+const /** {HTMLElement} */ $playerPrevBtn = document.querySelector('[data-player-prev-btn]');
 
 const updatePlayerInfo = (playerState, $player) => {
 
@@ -97,6 +99,64 @@ const updatePlayerBtnState = (playerState, $player) => {
 
 }
 
+const /** {string} */ documentTitle = document.title;
+
+const updateDocumentTitle = (playerState) => {
+  // set document title when playing
+  const {
+    paused,
+    track_window: {
+      current_track: {
+        artists: trackArtists,
+        name: trackName
+      }
+    }
+  } = playerState;
+
+  const /** {string} */ artistNameStr = trackArtists.map(({ name }) => name).join(', ');
+
+  document.title = paused ? documentTitle : `${trackName} • ${artistNameStr} | Musify `;
+
+}
+
+const /** {HTMLElement} */ $playerLgProgress = document.querySelector('[data-player-progress-lg]');
+const /** {HTMLElement} */ $playerSmProgress = document.querySelector('[data-player-progress-sm]');
+const /** {HTMLElement} */ $playerLgProgressPos = document.querySelector('[data-progress-pos]');
+const /** {HTMLElement} */ $playerLgProgressDuration = document.querySelector('[data-progress-duration]');
+let /** {NodeJS.Timeout | undefined} */ lastProgressInterval;
+
+const updatePlayerProgress = (playerState) => {
+
+  const {
+    position,
+    duration,
+    paused
+  } = playerState;
+
+  // progress initial value
+  let currentPosition = position;
+  $playerLgProgress.max = duration;
+  $playerSmProgress.max = duration;
+  $playerLgProgress.value = currentPosition;
+  $playerSmProgress.value = currentPosition;
+  $playerLgProgressDuration.textContent = msToTimeCode(duration);
+  $playerLgProgressPos.textContent = msToTimeCode(currentPosition);
+
+  lastProgressInterval && clearInterval(lastProgressInterval);
+
+  if(!paused) {
+    const currentProgressInterval = setInterval(() => {
+      currentPosition += 1000;
+      $playerLgProgress.value = currentPosition;
+      $playerSmProgress.value = currentPosition;
+      $playerLgProgressPos.textContent = msToTimeCode(currentPosition);
+    }, 1000);
+    lastProgressInterval = currentProgressInterval;
+  }
+
+}
+
+
 
 /**
  * when any changes occur in the playerthis function will be execute
@@ -117,6 +177,16 @@ const playerStateChange = (playerState) => {
 
   //update player control play btn ui state state after state change
   $players.forEach(player => updatePlayerBtnState(playerState, player));
+
+  // update document title when playing track
+  updateDocumentTitle(playerState);
+
+  // update player progress
+  updatePlayerProgress(playerState);
+
+  // disable next and prev button if there is no track available
+  $playerNextBtn.disabled = !track_window.next_tracks.length;
+  $playerPrevBtn.disabled = !track_window.previous_tracks.length;
 
 }
 
@@ -188,7 +258,22 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     const /** {Array<HTMLElement>} */ $playBtns = document.querySelectorAll('[data-play-btn]');
     addEventOnElems($playBtns, 'click', function () {
       togglePlay.call(this, player);
-    })
+    });
+
+    // skip to next track
+    $playerNextBtn.addEventListener('click', async () => {
+      await player.nextTrack();
+    });
+
+    // skip to previous track
+    $playerPrevBtn.addEventListener('click', async () => {
+      await player.previousTrack();
+    });
+
+    // control player seek
+    $playerLgProgress.addEventListener('input', async function () {
+      await player.seek(this.value);
+    });
 
   });
 
