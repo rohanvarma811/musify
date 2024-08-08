@@ -100,7 +100,6 @@ const updatePlayerBtnState = (playerState, $player) => {
 }
 
 const /** {string} */ documentTitle = document.title;
-
 const updateDocumentTitle = (playerState) => {
   // set document title when playing
   const {
@@ -210,7 +209,7 @@ const togglePlay = async function(player) {
   } = this.dataset;
 
   if(playBtn == 'play') {
-
+    
     const /** {boolean} */ lastPlayed = currentUri == btnUri || currentTrackUri == btnTrackUri;
 
     if((!btnUri && !btnTrackUri) || lastPlayed) {
