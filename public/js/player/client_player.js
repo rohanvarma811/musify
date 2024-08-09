@@ -165,8 +165,6 @@ const updatePlayerProgress = (playerState) => {
  */
 const playerStateChange = (playerState) => {
   const { track_window } = playerState;
-
-  // console.log((playerState));
   
   // update player ui
   $players.forEach(player => updatePlayerInfo(playerState, player));
@@ -230,13 +228,55 @@ const togglePlay = async function(player) {
 }
 
 
+const /** {<HTMLElement>} */ $volumeProgress = document.querySelector('[data-volume-progress]');
+const /** {<HTMLElement>} */ $volumeBtnIcon = document.querySelector('[data-volume-btn] .icon');
+
+/**
+ * Sets the volume icon based on the specified volume level.
+ * 
+ * @param {number} volume - The volume level as a percentage (0 to 100). 
+ */
+const setVolumeIcon = function (volume) {
+
+  // The name of the volume icon to be displayed
+  const volumeIcon =
+    volume > 66 ? 'volume_up' :
+      volume > 33 ? 'volume_down' :
+        volume > 0 ? 'volume_mute' : 'volume_off';
+
+  $volumeBtnIcon.textContent = volumeIcon;
+
+}
+
+
+/**
+ * Updates the volume of a media player and associated UI elements.
+ * 
+ * @param {object} player - spotify player instance
+ * @returns {void}
+ */
+const updatePlayerVolume = async function (player) {
+
+  const /** {number} */ volumePercent = this.value;
+
+  // setting player volume icon
+  setVolumeIcon(volumePercent);
+
+  // set volume to player
+  await player.setVolume(volumePercent / 100);
+
+  // store volume to localStorage
+  localStorage.setItem('volume', volumePercent);
+  
+}
+
+
 window.onSpotifyWebPlaybackSDKReady = () => {
   const /** {number} */ volume = localStorage.getItem('volume') ?? 100;
 
   /**
    * Create spotiy player instance
    */
-  // const token = '[My access token]';
   const player = new Spotify.Player({
     name: 'Musify Web Player',
     getOAuthToken: (callback) => { callback(cookies.get('access_token')); },
@@ -274,12 +314,30 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       await player.seek(this.value);
     });
 
-  });
+    // control player volume
+    $volumeProgress.addEventListener('input', updatePlayerVolume.bind($volumeProgress, 
+    player));
 
+  });
 
   // call event when any changes occur in player
   player.addListener('player_state_changed', playerStateChange);
 
+  // set player volume and initial visually
+  player.addListener('ready', ({ device_id }) => {
+    // console.log('Ready with Device ID', device_id);
+    
+    player.getVolume().then(volume => {
+      const volumePercent = volume * 100;
+      // console.log(volumePercent);
+      $volumeProgress.value = volumePercent;
+      setVolumeIcon(volumePercent);
+    }) .catch(error => {
+      console.error('Error getting volume:', error);
+    });
+  });
+
+  
   // Connect player
   player.connect();
 
