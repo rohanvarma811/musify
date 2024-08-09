@@ -19,9 +19,12 @@ const albumApi = require('../api/album.api');
 const playlistApi = require('../api/playlist.api');
 
 const home = async (req, res) => {
+
+    // current user profile
     const currentProfile = await userApi.getProfile(req);
     // console.log('Current Profile:', currentProfile);
 
+    // recently played tracks
     const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
     // console.log('Recently Played:', recentlyPlayed);
 

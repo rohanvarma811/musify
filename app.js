@@ -20,6 +20,7 @@ const login = require('./src/routes/login.route');
 const auth = require('./src/routes/auth.route');
 const authenticatedUser = require('./src/middlewares/auth_user.middleware');
 const home = require('./src/routes/home.route');
+const explore = require('./src/routes/explore.route');
 
 
 // Initial express app
@@ -67,6 +68,12 @@ app.use(authenticatedUser);
  * Home page
  */
 app.use('/', home);
+
+
+/**
+ * Explore page
+ */
+app.use('/explore', explore);
 
 
 app.listen(5000, () => {
