@@ -329,7 +329,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     
     player.getVolume().then(volume => {
       const volumePercent = volume * 100;
-      // console.log(volumePercent);
       $volumeProgress.value = volumePercent;
       setVolumeIcon(volumePercent);
     }) .catch(error => {

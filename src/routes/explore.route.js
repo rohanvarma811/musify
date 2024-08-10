@@ -16,6 +16,6 @@ const router = require('express').Router();
  */
 const { explore } = require('../controllers/explore.controller');
 
-router.get('/', explore);
+router.get(['/', '/page/:page'], explore);
 
 module.exports = router;
