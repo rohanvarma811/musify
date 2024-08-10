@@ -6,7 +6,6 @@
  * copyright 2024 rohanvarma811
  */
 
-
 .category-card { height: 120px; }
 
 .category-card .card-banner {
@@ -31,10 +30,6 @@
 
 
 
-
-
-
-
 /*-----------------------------------*\
   #MEDIA QUERIES
 \*-----------------------------------*/
@@ -44,10 +39,15 @@
  */
 
 @media (min-width: 768px) {
-    
-    .category-card { height: 200px; }
+  
+  .category-card { height: 200px; }
 
+  .category-card .card-content { padding-inline-end: var(--space-4); }
 
-
+  .category-card .card-banner {
+    width: 150px;
+    height: 150px;
+    bottom: -24px;
+  }
 
 }
