@@ -117,8 +117,9 @@
 
 :has(> .state-layer):hover > .state-layer { opacity: 0.08; }
 
-:has(> .state-layer):is(:focus, :focus-visible, :focus-within, :active) > .state-layer {
-  opacity: 0.12;
+:has(> .state-layer):is(:focus, :focus-visible, :focus-within ) > .state-layer {
+  /* Possible Future Changes HERE!!*/
+  opacity: 0;
 }
 
 

@@ -28,6 +28,22 @@ const getSeveralDetail = async (req) => {
 }
 
 
+/**
+ * Get a single category used to tag items in Spotify
+ * 
+ * @param {Object} req - server request Object
+ * @returns {Object} 
+ */
+const getDetail = async (req) => {
+    const { categoryId } = req.params;
+
+    const { data: catInfo } = await getData(`/browse/categories/${categoryId}`, req.cookies.access_token);
+
+    return catInfo;
+}
+
+
 module.exports = {
-    getSeveralDetail
+    getSeveralDetail,
+    getDetail
 }

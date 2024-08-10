@@ -75,21 +75,25 @@ const ripple = function ($rippleElem) {
 
         this.appendChild($ripple);
 
+        // Set up removal function
         const removeRipple = () => {
             $ripple.animate({
                 opacity : 0
             }, { fill: 'forwards', duration: 200 });
 
+            // Adjust the timeout to match the animation duration
             setTimeout(() => {
                 $ripple.remove();
             }, 1000);
         }
 
-        this.addEventListener('pointerup', removeRipple);
-        this.addEventListener('pointerleave', removeRipple);
+        // Ensure that the removeRipple function is called only once
+        this.addEventListener('pointerup', removeRipple, { once: true });
+        this.addEventListener('pointerleave', removeRipple, { once: true });
 
+        // Calculate ripple size and position
         const /** {number} */ rippleSize = Math.max(this.clientWidth, this.clientHeight);
-
+        
         $ripple.style.top = `${event.layerY}px`;
         $ripple.style.left = `${event.layerX}px`;
         $ripple.style.width = `${rippleSize}px`;
