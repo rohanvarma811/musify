@@ -21,6 +21,7 @@ const auth = require('./src/routes/auth.route');
 const authenticatedUser = require('./src/middlewares/auth_user.middleware');
 const home = require('./src/routes/home.route');
 const explore = require('./src/routes/explore.route');
+const album = require('./src/routes/album.route');
 
 
 // Initial express app
@@ -74,6 +75,12 @@ app.use('/', home);
  * Explore page
  */
 app.use('/explore', explore);
+
+
+/**
+ * Album page
+ */
+app.use('/album', album);
 
 
 app.listen(5000, () => {
