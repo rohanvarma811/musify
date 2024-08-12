@@ -14,7 +14,7 @@ const { getUrlQuery } = require('../utils/helpers.util');
 
 
 /**
- * Get a list of new album releases featuresin Spotify
+ * Get a list of new album releases features in Spotify
  * 
  * @param {Object} req - server request object
  * @param {number} itemLimit - the maximum number of items to return. default: 30
@@ -28,6 +28,23 @@ const getNewRelease = async(req, itemLimit) => {
     return { baseUrl: req.baseUrl, page, ...newRelease }
 }
 
+
+/**
+ * Get Spotify catalog information about an artists's albums
+ * 
+ * @param {Object} req - server request object
+ * @returns {Object}
+ */
+const getDetail = async(req) => {
+    const { albumId } = req.params;
+
+    const { data: albumDetail } = await getData(`/albums/${albumId}`, req.cookies.access_token);
+
+    return albumDetail
+}
+
+
 module.exports = {
-    getNewRelease
+    getNewRelease,
+    getDetail
 }
