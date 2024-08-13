@@ -164,13 +164,25 @@ $modalPlayerTogglers && addEventOnElems($modalPlayerTogglers, 'click', toggleMod
 /**
  * Back and Forward functionality
  */
-const backBtn = document.querySelector('[data-back-btn]');
-const forwardBtn = document.querySelector('[data-forward-btn]');
+const $backBtn = document.querySelector('[data-back-btn]');
+const $forwardBtn = document.querySelector('[data-forward-btn]');
 
-backBtn?.addEventListener('click', function () {
+$backBtn?.addEventListener('click', function () {
     window.history.back();
 });
 
-forwardBtn?.addEventListener('click', function () {
+$forwardBtn?.addEventListener('click', function () {
     window.history.forward();
+});
+
+
+/**
+ * add Background color in list header when sticky on top
+ */
+const $listHeader = document.querySelector('[data-list-header]');
+
+$page?.addEventListener('scroll', function() {
+    if($listHeader) {
+        this.classList[$listHeader.offsetTop > 0 ? 'add' : 'remove']('list-header-active');
+    }
 });

@@ -34,6 +34,20 @@
 <html lang="en">
 <head>
     <%- include('../layouts/head', { title: `${albumName} - Album by ${artistsName} | Musify` }) %>
+
+    <link rel="stylesheet" href="/css/detail.css">
+
+    <style>
+        .page::before { background-image: url(<%=detailBanner%>); }
+
+        .list-item .item-content { grid-template-columns: minmax(0, 1fr) 42px; }
+
+        .list-item .item-number {
+            position: relative;
+            display: block;
+            width: 28px;
+        }
+    </style>
 </head>
 <body>
 

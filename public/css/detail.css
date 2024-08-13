@@ -1,0 +1,51 @@
+/*-----------------------------------*\
+  #detail.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2024 rohanvarma811
+*/
+
+
+.page {
+    position: relative;
+    isolation: isolate;
+}
+
+.page::before,
+.page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 480px;
+    z-index: -1;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 480px;
+    background-image: url('<%=detailBanner%>');
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the area without stretching */
+    background-position: top; /* Centers the image */
+    opacity: 0.8; /* Adjust opacity as needed for visual effect */
+    z-index: -1;
+}
+
+.page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 480px;
+    background-image: linear-gradient(180deg, #0000, var(--background));
+    backdrop-filter: blur(150px);
+    z-index: -1;
+}
