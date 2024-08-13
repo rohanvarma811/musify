@@ -36,6 +36,29 @@ const playlist = async(req, res) => {
 }
 
 
+const playlistDetail = async (req, res) => {
+
+    // current user profile
+    const currentProfile = await userApi.getProfile(req);
+
+    // recently played tracks
+    const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
+    const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track);
+
+    // get playlist detail
+    const playlistDetail = await playlistApi.getDetail(req);
+
+    res.render('./pages/playlist_detail', {
+        currentProfile,
+        recentlyPlayedTracks,
+        msToTimeCode,
+        playlistDetail
+    });
+
+}
+
+
 module.exports = {
-    playlist
+    playlist,
+    playlistDetail
 }

@@ -14,10 +14,11 @@ const router = require('express').Router();
 /**
  * Custom modules
  */
-const { playlist } = require('../controllers/playlist.controller');
+const { playlist, playlistDetail } = require('../controllers/playlist.controller');
 
 
 router.get(['/', '/page/:page'], playlist);
 
+router.get(['/:playlistId'], playlistDetail);
 
 module.exports = router;
