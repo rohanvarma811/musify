@@ -23,6 +23,7 @@ const home = require('./src/routes/home.route');
 const explore = require('./src/routes/explore.route');
 const album = require('./src/routes/album.route');
 const playlist = require('./src/routes/playlist.route');
+const profile = require('./src/routes/profile.route');
 
 
 // Initial express app
@@ -88,6 +89,12 @@ app.use('/album', album);
  * Playlist page
  */
 app.use('/playlist', playlist);
+
+
+/**
+ * Profile page
+ */
+app.use('/me', profile);
 
 
 app.listen(5000, () => {
