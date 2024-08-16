@@ -21,7 +21,7 @@ const { getUrlQuery } = require('../utils/helpers.util');
  * @returns {Object}
  */
 const getNewRelease = async(req, itemLimit) => {
-    const { limit, offset, page} = getUrlQuery(req.params, itemLimit);
+    const { limit, offset, page } = getUrlQuery(req.params, itemLimit);
 
     const { data: { albums: newRelease } } = await getData(`/browse/new-releases?limit=${limit}&offset=${offset}`, req.cookies.access_token);
 
@@ -40,7 +40,7 @@ const getDetail = async(req) => {
 
     const { data: albumDetail } = await getData(`/albums/${albumId}`, req.cookies.access_token);
 
-    return albumDetail
+    return albumDetail;
 }
 
 
