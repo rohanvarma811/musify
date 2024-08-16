@@ -21,7 +21,7 @@ router.get('/', profile);
 
 router.get(['/top/artist', '/top/artist/page/:page'], topArtist);
 
-router.get(['/top/track', '/top/artist/page/:page'], TopTrack);
+router.get(['/top/track', '/top/track/page/:page'], TopTrack);
 
 
 module.exports = router;
