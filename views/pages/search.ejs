@@ -1,0 +1,151 @@
+<% 
+    // search all
+    const {
+        albums: {
+            total: totalSearchAlbum,
+            items: searchAlbumItems
+        },
+        artists: {
+            total: totalSearchArtist,
+            items: searchArtistItems
+        },
+        tracks: {
+            total: totalSearchTrack,
+            items: searchTrackItems
+        },
+        playlists: {
+            total: totalSearchPlaylist,
+            items: searchPlaylistItems
+        }
+    } = locals.searchAll;
+%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../layouts/head', { title: `Search | Musify` }) %>
+</head>
+<body>
+
+    <!-- 
+        - #RECENTLY PLAYED
+    -->
+    <%- include('../layouts/recent_played', { recentlyPlayed: locals.recentlyPlayedTracks }) %>
+
+    <article class="page custom-scrollbar" data-page>
+
+        <!-- 
+            - #TOP APP BAR
+        -->
+        <%- include('../partials/top_bar', { 
+            ...locals.currentProfile,
+            query
+        }) %>
+
+        <!-- 
+            - #BOTTOM NAV
+        -->
+        <%- include('../partials/bottom_nav') %>
+
+
+        <div class="main" data-main>
+
+            <!-- 
+                - #TRACKS
+            -->
+            <% if(totalSearchTrack) { %>
+                <section class="section">
+
+                    <div class="title-wrapper">
+                        <h2 class="title-large section-title">Songs</h2>
+                    </div>
+
+                    <div class="list">
+
+                        <% searchTrackItems.forEach(({ album: { images }, artists, duration_ms, id, name: title, uri: trackUri }) => { %>
+
+                            <% const text = artists.map(({ name }) => name).join(', ') %>
+
+                            <%- include('../partials/list_item', {
+                                title,
+                                images,
+                                text,
+                                duration_ms,
+                                id,
+                                trackUri
+                            }) %>
+
+                        <% }) %>
+
+                    </div>
+                </section>
+            <% } %>
+
+
+             <!-- 
+                - #ALBUMS
+            -->
+            <% if(totalSearchAlbum) { %>
+                <section class="section">
+
+                    <div class="title-wrapper">
+                        <h2 class="title-large section-title">Albums</h2>
+                    </div>
+
+                    <div class="slider" data-slider>
+                        <div class="slider-inner">
+
+                            <% searchAlbumItems.forEach(({ id, images, name: title, artists, release_date, uri}) => { %>
+
+                                <%
+                                    const year = new Date(release_date).getFullYear();
+
+                                    const text = artists.map(({ name }) => name).join(', ');
+
+                                    const image = images.find(item => item.width == 300);
+                                %>
+
+                                <%- include('../partials/card', {
+                                    image,
+                                    type: 'album',
+                                    title,
+                                    text,
+                                    year,
+                                    link: `/album/${id}`,
+                                    uri
+                                }) %>
+    
+                            <% }) %>
+
+                        </div>
+                    </div>
+                </section>
+            <% } %>
+
+
+        </div>
+
+
+        <!-- 
+            - #PLAYER SM
+        -->
+        <%- include('../partials/player_sm') %>
+
+
+        <!-- 
+            - #PLAYER LG
+        -->
+        <%- include('../partials/player_lg') %>
+
+
+        <!-- 
+            - #FOOTER
+        -->
+        <%- include('../layouts/footer') %>
+        
+
+    </article>
+    
+</body>
+</html>

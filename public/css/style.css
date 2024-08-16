@@ -1079,6 +1079,66 @@
 
 .pagination .btn-wrapper { display: flex; }
 
+/**
+ * Chip
+ */
+.chip {
+  display: flex;
+  min-width: max-content;
+  max-width: max-content;
+  height: 32px;
+  padding-inline: var(--space-4);
+  align-items: center;
+  border-radius: var(--radius-small);
+  background-color: var(--surface-container-low);
+  color: var(--on-surface-variant);
+  --state-layer-bg: var(--on-surface-variant);
+}
+
+.chip:hover:not(:focus) { box-shadow: var(--shadow-1); }
+
+.chip .ripple { filter: blur(0); }
+
+.chip .icon {
+  width: 0;
+  overflow: hidden;
+  transition: var(--tr-duration-short-2) var(--tr-easing-standard);
+}
+
+.chip.active {
+  padding-inline-start: 0;
+  background-color: var(--on-secondary-container);
+  color: var(--on-secondary-container);
+  --state-layer-bg: var(--on-secondary-container);
+}
+
+.chip.active .icon {
+  width: 1em;
+  margin-inline: var(--space-2);
+}
+
+.filter-list {
+  position: sticky;
+  top: -4px;
+  background-color: var(--background);
+  display: flex;
+  padding-block: var(--space-4);
+  gap: var(--space-2);
+  margin-inline: -16px;
+  overflow-x: auto;
+  z-index: 2;
+  transition: var(--tr-duration-short-4) var(--tr-easing-emphasised);
+}
+
+.header-hide .filter-list { top: -68px; }
+
+.filter-list::-webkit-scrollbar { display: none; }
+
+.filter-list .chip:first-child { margin-inline-start: var(--space-4); }
+
+.filter-list .chip:last-child { margin-inline-end: var(--space-4); }
+
+
 
 
 
