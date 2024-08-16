@@ -25,6 +25,7 @@ const album = require('./src/routes/album.route');
 const playlist = require('./src/routes/playlist.route');
 const profile = require('./src/routes/profile.route');
 const search = require('./src/routes/search.route');
+const logout = require('./src/routes/logout.route');
 
 
 // Initial express app
@@ -60,6 +61,12 @@ app.use(cors()).use(cookieParser());
  * Login Page
  */
 app.use('/login', login);
+
+
+/**
+ * Logout Page
+ */
+app.use('/logout', logout);
 
 
 /**
