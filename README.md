@@ -7,13 +7,10 @@ Musify is a full-stack web application that replicates some of the core features
 1. [Installation](#installation)
 2. [Technologies Used](#technologies-used)
 3. [Project Structure](#project-structure)
-4. [GraphQL API](#graphql-api)
-5. [Client Setup](#client-setup)
-6. [Server Setup](#server-setup)
-7. [Running the App](#running-the-app)
-8. [Contributing](#contributing)
-9. [Demo](#demo)
-10. [License](#license)
+4. [Running the App](#running-the-app)
+5. [Contributing](#contributing)
+6. [Demo](#demo)
+7. [License](#license)
 
 ## Installation
 
@@ -43,21 +40,13 @@ cd musify
 
 ## Running the App
 
-1. Make sure MongoDB is running.
-2. Start the server:
+1. Start the server:
 
 ```bash
-npm start
+node app.js
 ```
 
-3. Start the client development server:
-
-```bash
-cd client
-npm start
-```
-
-4. Open your browser and navigate to `http://localhost:3000` to see the app.
+2. Open your browser and navigate to `http://localhost:5000` to see the app.
 
 ## Contributing
 
@@ -70,12 +59,6 @@ npm start
 
 ## Demo
 
-![Screenshot 2024-07-28 145804](https://github.com/user-attachments/assets/18d8e7b9-5f3e-489d-8762-2dbcfd7d6e18)
-![Screenshot 2024-07-28 145817](https://github.com/user-attachments/assets/3e4af026-6d6a-4af9-80e2-80fa233074c1)
-![Screenshot 2024-07-28 145926](https://github.com/user-attachments/assets/92cfb053-6337-4981-a930-6d86dc7f68c9)
-![Screenshot 2024-07-28 145948](https://github.com/user-attachments/assets/cf789853-faa0-4816-9561-c75aa54f7f94)
-![Screenshot 2024-07-28 150002](https://github.com/user-attachments/assets/fca91b32-052d-4edb-967c-c0b13dd004eb)
-![Screenshot 2024-07-28 150648](https://github.com/user-attachments/assets/68fc529c-2ff6-4095-a847-ffa8c330d722)
 
 ## License
 
