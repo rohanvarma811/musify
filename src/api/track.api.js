@@ -27,6 +27,8 @@ const { getData } = require('../config/axios.config');
  */
 
 // ORIGINAL CODE
+// Error handling Code here 
+// Generate a Alert that song is not available
 const getRecommendedTrack = async (req, trackSeed, itemLimit) => {
     const { data: { tracks : recommendedTracks } } = await getData(`/recommendations?seed_tracks=${trackSeed}&limit=${itemLimit}`, req.cookies.access_token);
 
