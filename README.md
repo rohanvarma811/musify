@@ -14,6 +14,30 @@ Musify is a full-stack web application that replicates some of the core features
 
 ## Installation
 
+1. Initialize a New NodeJS Project (if not done already):
+
+```bash
+npm init -y
+```
+
+2. Install ExpressJS:
+
+```bash
+npm install express
+```
+
+3. Install EJS (for templating):
+
+```bash
+npm install ejs
+```
+
+4. Install dotenv (for environment variables):
+
+```bash
+npm install dotenv
+```
+
 ### Prerequisites
 
 - Node.js
