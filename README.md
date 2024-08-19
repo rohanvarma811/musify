@@ -86,6 +86,11 @@ node app.js
 
 ## Demo
 
+![Screenshot 2024-08-16 144636](https://github.com/user-attachments/assets/6c97197a-76e7-496b-a29b-af2a00f82561)
+![Screenshot 2024-08-16 144655](https://github.com/user-attachments/assets/22ae0b9c-6b87-4b78-99cc-cfb089da30f1)
+![Screenshot 2024-08-16 144711](https://github.com/user-attachments/assets/80fd1768-24b8-4157-ab20-f5a632c7868f)
+![Screenshot 2024-08-16 144735](https://github.com/user-attachments/assets/1e2d7d72-25db-4ac1-863d-0c8267096081)
+![Screenshot 2024-08-16 144804](https://github.com/user-attachments/assets/200abfab-d7b0-42e0-8747-7d14c98a3055)
 
 ## License
 
