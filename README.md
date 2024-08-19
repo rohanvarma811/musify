@@ -10,11 +10,10 @@ This project, musify, is provided for educational and informational purposes onl
 
 1. [Installation](#installation)
 2. [Technologies Used](#technologies-used)
-3. [Project Structure](#project-structure)
-4. [Running the App](#running-the-app)
-5. [Contributing](#contributing)
-6. [Demo](#demo)
-7. [License](#license)
+3. [Running the App](#running-the-app)
+4. [Contributing](#contributing)
+5. [Demo](#demo)
+6. [License](#license)
 
 ## Installation
 
