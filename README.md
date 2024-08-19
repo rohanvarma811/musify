@@ -2,6 +2,10 @@
 
 Musify is a full-stack web application that replicates some of the core features of Spotify. This project is built using NodeJS, ExpressJS, and EJS for server-side rendering, with CSS for styling. It also includes authentication mechanisms to manage user sessions securely. The project aims to provide a dynamic and responsive user interface while allowing users to browse and play music just like on Spotify.
 
+# Disclaimer
+
+This project, musify, is provided for educational and informational purposes only. The content and code within this repository are not intended for commercial use. The project does not claim ownership of any third-party trademarks, logos, or copyrighted content referenced or utilized within the codebase. All trademarks, logos, and copyrighted content remain the property of their respective owners. The use of these materials is intended for educational purposes under the principles of fair use.
+
 ## Table of Contents
 
 1. [Installation](#installation)
