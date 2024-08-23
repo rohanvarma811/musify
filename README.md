@@ -17,25 +17,27 @@ This project, musify, is provided for educational and informational purposes onl
 
 ## Installation
 
-1. Initialize a New NodeJS Project (if not done already):
+1. Install Node.js:
+
+2. Initialize a New NodeJS Project (if not done already):
 
 ```bash
 npm init -y
 ```
 
-2. Install ExpressJS:
+3. Install ExpressJS:
 
 ```bash
 npm install express
 ```
 
-3. Install EJS (for templating):
+4. Install EJS (for templating):
 
 ```bash
 npm install ejs
 ```
 
-4. Install dotenv (for environment variables):
+5. Install dotenv (for environment variables):
 
 ```bash
 npm install dotenv
